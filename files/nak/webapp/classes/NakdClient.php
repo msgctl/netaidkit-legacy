@@ -28,7 +28,14 @@ class NakdClient {
     }
 
     protected function _sendCommand($command) {
-        fwrite($this->_conn, $command);
+        $message = array(
+            'type' => 'command',
+            'command' => $command->getCommand(),
+            'args' => $command->getArgs()
+        );
+        $message_string = json_encode($message);
+
+        fwrite($this->_conn, $message_string);
         $response = '';
         while (!feof($this->_conn)) {
             $response .= fread($this->_conn, MAX_MSG_LEN - strlen($response));
