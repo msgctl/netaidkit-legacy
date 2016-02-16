@@ -27,7 +27,6 @@ int nakd_handle_connection(int sock) {
     jtok = json_tokener_new();
 
     /* TODO: GRAB CREDENTIALS OF CONNECTING PROCESS */
-    printf("CONNECTION FROM USER: [%s]\n", "USER");
 
     for (;;) {
         do {

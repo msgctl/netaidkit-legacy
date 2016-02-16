@@ -45,6 +45,7 @@ int main(int argc, char *argv[]) {
     int pid_fd, sock, n_sock_path = strlen(SOCK_PATH);
 
     nakd_log_init();
+    nakd_use_syslog(0);
 
     /* Check if nakd is already running. */
     if ((pid_fd = writePid(PID_PATH)) == -1)

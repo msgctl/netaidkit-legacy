@@ -71,6 +71,8 @@ static json_object *handle_command(json_object *jcmd) {
     }
     command_name = json_object_get_string(jcmd_name);
 
+    nakd_log(L_DEBUG, "Handling command \"%s\".", command_name);
+
     return nakd_call_command(command_name, jcmd);
 }
 
@@ -103,12 +105,16 @@ json_object *nakd_handle_message(json_object *jmsg) {
         goto ret;
     }
 
+    nakd_log(L_DEBUG, "Handling message of type \"%s\".", typestr);
+
     jresponse = handler(jmsg);
 
 ret:
     if (jresponse == NULL) {
         jresponse = json_object_new_object();
         nakd_message_set_status(jresponse, MSG_STATUS_ERROR);
+        nakd_log(L_DEBUG, "Couldn't handle message of type \"%s\". "
+            "Replying with MSG_STATUS_ERROR.", typestr);
     }
     
     return jresponse;

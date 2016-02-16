@@ -6,7 +6,7 @@
 #include "log.h"
 
 static command commands[] = {
-    { "getapnam", get_ap_name, 0 },
+//    { "getapnam", get_ap_name, 0 },
     { "wifiscan", cmd_shell,   "/nak/scripts/iwinfo.sh"        },
     { "apconfig", cmd_shell,   "/nak/scripts/setup_ap.sh"      },
     { "wificonn", cmd_shell,   "/nak/scripts/setup_wan.sh"     },
